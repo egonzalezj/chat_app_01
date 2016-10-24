@@ -1,0 +1,96 @@
+<!--
+* File name: chat.html
+* Description:
+* Chat application.
+* Transmit text.
+* Author: Elisabet González.
+* Source:
+* Date: October 17th, 2016.
+* Version 1.0
+*
+* History:
+* v1.0  17/10/2016  Send text to another peer.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat APP</title>
+    <meta charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <header class="col-md-12">
+          <h1>Chat App v1.0</h1>
+        </header>
+      </div>
+
+      <div class="row">
+        <section class="col-md-12">
+          <p>This chat application uses WebRTC to create a peer-to-peer, server-less connection between you and the recipient of your chat messages, a bit like Skype!</p>
+
+          <p>Want to create this yourself? Read the full tutorial on <a href="http://pusher.com/tutorials/webrtc_chat">creating a WebRTC chat application using Pusher</a>.</p>
+
+          <hr>
+
+          <h2>Getting started</h2>
+
+          <ol>
+            <li>Type a channel name and click <strong>create</strong></li>
+            <li>Open the chat in another tab</li>
+            <li>Type the same channel name and click <strong>join</strong></li>
+            <li>Wait a moment and start chatting!</li>
+          </ol>
+
+          <!-- WebRTC demo -->
+          <div class="demo">
+            <div class="demo-connect">
+              <input type="text" class="demo-chat-channel-input form-control" placeholder="Channel name"></input>
+              <button class="demo-chat-create btn btn-primary">Create</button>
+              <button class="demo-chat-join btn btn-warning">Join</button>
+            </div>
+            <div class="demo-chat inactive">
+              <div class="demo-chat-input">
+                <input name="message" class="demo-chat-message-input form-control" placeholder="Message"></input>
+                <button class="demo-chat-send btn btn-primary">Send</button>
+              </div>
+              <ul class="demo-chat-messages list-group">
+                <li class="list-group-item" data-remove="true">No chat messages available</li>
+              </ul>
+            </div>
+            <footer>
+              <a href="http://pusher.com">Pusher</a> powered peer-to-peer chat
+            </footer>
+          </div>
+          <!-- /End WebRTC demo -->
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.js"></script>
+    <script src="http://js.pusher.com/3.2/pusher.min.js"></script>
+    <script src="https://webrtc-experiment.com/DataChannel.js"></script>
+    <script src="js/datachannel-demo.js"></script>
+
+    <!-- Fill channel name -->
+    <script>
+      function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+
+      var channel = getParameterByName("channel");
+
+      if (channel) {
+        document.querySelector(".demo-chat-channel-input").value = channel;
+      }
+    </script>
+
+  </body>
+</html>
